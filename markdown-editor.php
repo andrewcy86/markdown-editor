@@ -91,7 +91,7 @@ $plugin_dir = plugin_dir_url( __FILE__ );
 <?php
 
 $WP_PATH = implode("/", (explode("/", $_SERVER["PHP_SELF"], -4)));
-$path = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/web/app/helptext/content/';
+$path = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/';
 
 $files = scandir($path);
 ?>
