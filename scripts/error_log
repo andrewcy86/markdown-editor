@@ -1,0 +1,2 @@
+[06-Apr-2021 13:17:39 UTC] PHP Fatal error:  Cannot redeclare load_css() (previously declared in /home/acy3/public_html/wordpress6/web/app/plugins/markdown-editor/scripts/editor.php:15) in /home/acy3/public_html/wordpress6/web/app/plugins/markdown-editor/markdown-editor.php on line 36
+[06-Apr-2021 15:09:16 UTC] PHP Warning:  file_get_contents(/home/acy3/public_html/wordpress6/web/app/helptext/content/0000012-a-01.md): failed to open stream: No such file or directory in /home/acy3/public_html/wordpress6/web/app/plugins/markdown-editor/scripts/editor.php on line 12
