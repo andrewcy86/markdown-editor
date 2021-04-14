@@ -91,19 +91,27 @@ $plugin_dir = plugin_dir_url( __FILE__ );
 <?php
 
 $WP_PATH = implode("/", (explode("/", $_SERVER["PHP_SELF"], -4)));
-$path = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/';
+
+//Temporary addition of web for dev environment
+$path = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/pages/';
 
 $files = scandir($path);
 ?>
   <div id="left">
 <ul>
+<li><i class='fas fa-folder'></i> <a href='#' id='edit-folder-index' class='edit_page'><strong>index.md</strong></a></li>
+</ul>
+<ul style="padding-left: 15px;">
 <?php
-$i = -3;
+$i = 0;
 foreach ($files as &$value) {
 $i++;
-
 if(strpos($value, '.md') !== false){
-    echo "<li><a href='#' id='edit-".$i."' class='edit_page'>".$value."</a> <span style='color:#d63638; cursor: pointer;' id='delete-".$i."' class='delete_page' title='".$value."'><i class='fas fa-trash-alt'></i></span></li>";
+    if($value == 'index.md'){
+    echo "<li><i class='fas fa-folder-open'></i> <a href='#' id='edit-".$i."' class='edit_page'>".$value."</a></li>";
+    } else {
+    echo "<li><i class='fas fa-folder-open'></i> <a href='#' id='edit-".$i."' class='edit_page'>".$value."</a> <span style='color:#d63638; cursor: pointer;' id='delete-".$i."' class='delete_page' title='".$value."'><i class='fas fa-trash-alt'></i></span></li>";
+    }
 }
 
 }
@@ -145,9 +153,14 @@ jQuery('selectorForYourElement').css('display', 'none');
 jQuery(".edit_page").click(function() {
 
 var id = jQuery(this).attr('id');
+
+if(id == 'edit-folder-index') {
+jQuery("#right").load("<?php echo $plugin_dir; ?>scripts/editor.php?type=folderindex&page=index.md"); 
+} else {
 var n = id.replace("edit",'');
 var edit_page_val = jQuery('#edit'+n).text();
 jQuery("#right").load("<?php echo $plugin_dir; ?>scripts/editor.php?page="+edit_page_val);
+}
 
 });
 
@@ -179,8 +192,11 @@ jQuery("#create_form").submit(function( event ) {
   //alert( editor.getMarkdown() );
 
 var fname = jQuery('#fname').val();
-
-jQuery.post(
+if( fname == '' || fname.includes('.md') || fname == 'index' ) {
+    alert('Filename cannot be empty, contain the extension ".md", or use the name "index"');
+}
+else{
+    jQuery.post(
    '<?php echo $plugin_dir; ?>/scripts/update_content.php',{
 postvarsaction : 'create',
 postvarsfname : fname,
@@ -192,7 +208,7 @@ postvarscontent : editor.getMarkdown()
       location.reload();
       //}
    });
-   
+}
    
 });
     });

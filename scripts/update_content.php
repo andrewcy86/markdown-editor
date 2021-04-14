@@ -5,7 +5,11 @@ $WP_PATH = implode("/", (explode("/", $_SERVER["PHP_SELF"], -5)));
 
 require_once($_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/wp/wp-load.php');
 
+if($_POST['postvarstype']=='folderindex') {
 $markdown_path = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/'.$_POST['postvarspage'];
+} else {
+$markdown_path = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/pages/'.$_POST['postvarspage']; 
+}
 
 if(!empty($_POST['postvarsaction']) || !empty($_POST['postvarscontent'])){
 
@@ -15,7 +19,7 @@ if(!empty($_POST['postvarsaction']) || !empty($_POST['postvarscontent'])){
 if($_POST['postvarsaction'] == 'create')
 {
  $file_name=$_POST['postvarsfname'];
- $folder= $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/';
+ $folder= $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/pages/';
  $ext=".md";
  $file_name=$folder."".$file_name."".$ext;
  $create_file = fopen($file_name, 'w');
@@ -39,7 +43,7 @@ if($_POST['postvarsaction'] == 'update')
 
 if($_POST['postvarsaction'] == 'delete')
 {
- $folder= $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/';
+ $folder= $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/pages/';
  $file_name=$folder."".$_POST['postvarspage'];
  unlink($file_name);
  echo 'Markdown file: '.$_POST['postvarspage'].' deleted.';

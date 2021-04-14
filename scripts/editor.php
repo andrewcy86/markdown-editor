@@ -7,7 +7,11 @@ require_once($_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/wp/wp-load.php');
 
 $plugin_dir = dirname(plugin_dir_url( __FILE__ ));
 
+if($_GET['type']=='folderindex') {
 $markdown_path = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/'.$_GET['page'];
+} else {
+$markdown_path = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/pages/'.$_GET['page'];
+}
 
 $file_content = file_get_contents($markdown_path);
 
@@ -41,7 +45,8 @@ jQuery.post(
    '<?php echo $plugin_dir; ?>/scripts/update_content.php',{
 postvarsaction : 'update',
 postvarspage : '<?php echo $_GET['page']; ?>',
-postvarscontent : editor.getMarkdown()
+postvarscontent : editor.getMarkdown(),
+postvarstype : '<?php echo $_GET['type']; ?>'
 }, 
    function (response) {
       //if(!alert(response)){
