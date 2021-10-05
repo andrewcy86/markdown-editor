@@ -93,7 +93,7 @@ $plugin_dir = plugin_dir_url( __FILE__ );
 $WP_PATH = implode("/", (explode("/", $_SERVER["PHP_SELF"], -4)));
 
 //Temporary addition of web for dev environment
-$path = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/web/app/helptext/content/pages/';
+$path = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/pages/';
 
 $files = scandir($path);
 ?>
