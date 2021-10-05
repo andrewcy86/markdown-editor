@@ -15,7 +15,7 @@ if(is_dir($dir)){
                 //...
             } else { //create object with two fields
                 $list3 = array(
-                'file' => $file);
+                'file' => basename($file, '.md'));
                 array_push($list, $list3);
             }
         }
