@@ -1,9 +1,7 @@
 <?php
 $WP_PATH = implode("/", (explode("/", $_SERVER["PHP_SELF"], -6)));
 
-$dir = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/web/app/helptext/content/pages';
-
-echo $dir;
+$dir = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/pages';
 
 $zip_file = 'markdown_files.zip';
 
