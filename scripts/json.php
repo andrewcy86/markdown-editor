@@ -5,6 +5,8 @@ $WP_PATH = implode("/", (explode("/", $_SERVER["PHP_SELF"], -6)));
 
 $dir = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/web/app/helptext/content/pages';
 
+echo $dir;
+
 $list = array(); //main array
 
 if(is_dir($dir)){

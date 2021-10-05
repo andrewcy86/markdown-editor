@@ -1,7 +1,9 @@
-<? 
+<?php
 $WP_PATH = implode("/", (explode("/", $_SERVER["PHP_SELF"], -6)));
 
 $dir = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/web/app/helptext/content/pages';
+
+echo $dir;
 
 $zip_file = 'markdown_files.zip';
 
@@ -46,4 +48,3 @@ header('Cache-Control: must-revalidate');
 header('Pragma: public');
 header('Content-Length: ' . filesize($zip_file));
 readfile($zip_file);
-
