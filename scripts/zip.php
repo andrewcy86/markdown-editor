@@ -2,6 +2,7 @@
 $WP_PATH = implode("/", (explode("/", $_SERVER["PHP_SELF"], -6)));
 
 $dir = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/pages';
+$dir_upload = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/uploads/';
 
 $filename = 'markdown_files.zip';
 
@@ -44,16 +45,16 @@ function zip($source, $destination)
     return $zip->close();
 }
 
-zip($dir, $filename);
+zip($dir, $dir_upload.$filename);
 
- if (file_exists($filename)) {
+ if (file_exists($dir_upload.$filename)) {
   header('Content-Type: application/zip');
-  header('Content-Disposition: attachment; filename="'.basename($filename).'"');
-  header('Content-Length: ' . filesize($filename));
+  header('Content-Disposition: attachment; filename="'.basename($dir_upload.$filename).'"');
+  header('Content-Length: ' . filesize($dir_upload.$filename));
 
   flush();
-  readfile($filename);
+  readfile($dir_upload.$filename);
   // delete file
-  unlink($filename);
+  unlink($dir_upload.$filename);
 
  }
