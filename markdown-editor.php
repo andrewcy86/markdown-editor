@@ -97,7 +97,7 @@ $path = $_SERVER['DOCUMENT_ROOT'].$WP_PATH.'/app/helptext/content/pages/';
 
 $files = scandir($path);
 ?>
-<a href="<?php echo $plugin_dir ?>scripts/zip.php">Download Zip of Mardown Files</a> | <a href="<?php echo $plugin_dir ?>scripts/json.php">File Listing</a> 
+<a href="<?php echo $plugin_dir ?>scripts/zip.php">Download Zip of Markdown Files</a> | <a href="<?php echo $plugin_dir ?>scripts/json.php">File Listing</a> 
 <br /><br />
   <div id="left">
 <ul>
